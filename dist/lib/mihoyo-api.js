@@ -34,7 +34,7 @@ class MihoYoApi {
     }
     forumPostList(forumId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const url = `https://api-takumi.mihoyo.com/post/api/getForumPostList?forum_id=${forumId}&is_good=false&is_hot=false&page_size=20&sort_type=1`;
+            const url = `https://api-takumi.mihoyo.com/post/api/getForumPostList?forum_id=${forumId}&is_good=false&is_hot=false&page_size=10&sort_type=1`;
             let res = yield superagent_1.default.get(url).set(this._getHeader()).timeout(10000);
             let resObj = JSON.parse(res.text);
             logger_1.default.debug(`ForumList: ${res.text}`);
@@ -76,7 +76,7 @@ class MihoYoApi {
         const randomStr = utils_1.default.randomString(6);
         const timestamp = Math.floor(Date.now() / 1000);
         // iOS sign
-        let sign = md5_1.default(`salt=b253c83ab2609b1b600eddfe974df47b&t=${timestamp}&r=${randomStr}`);
+        let sign = (0, md5_1.default)(`salt=b253c83ab2609b1b600eddfe974df47b&t=${timestamp}&r=${randomStr}`);
         return {
             'Cookie': process.env.COOKIE_STRING,
             'Content-Type': 'application/json',
