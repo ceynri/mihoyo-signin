@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18.x'
       - name: install packages 
@@ -20,7 +20,7 @@ jobs:
         env:
           COOKIE_STRING: ${{secrets.COOKIE_STRING}}
           QY_WECHAT: ${{secrets.QY_WECHAT}}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: mihoyo-log
           path: log/mihoyo.log
